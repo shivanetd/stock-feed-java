@@ -6,7 +6,6 @@ import org.springframework.context.ApplicationContext;
 
 
 import com.shiva.stockfeed.client.StockFeedProviderWSClient;
-import com.shiva.stockfeed.service.StockFeedHandlerService;
 
 
 @SpringBootApplication
@@ -16,8 +15,7 @@ public class StockFeedApplication {
 		ApplicationContext context = SpringApplication.run(StockFeedApplication.class, args);
 
 		StockFeedProviderWSClient client = context.getBean(StockFeedProviderWSClient.class);
-		StockFeedHandlerService handler = context.getBean(StockFeedHandlerService.class);
-		client.connect(handler);
+		client.connect();
 	}
 
 }

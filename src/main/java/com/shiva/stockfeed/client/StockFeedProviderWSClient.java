@@ -1,5 +1,6 @@
 package com.shiva.stockfeed.client;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.client.standard.StandardWebSocketClient;
@@ -28,7 +29,13 @@ public class StockFeedProviderWSClient {
     @Value("${stockprovider.api.secretName}")
     private String apiSecretHeader;
 
-    public void connect(WebSocketHandler webSocketHandler) {
+    private final WebSocketHandler webSocketHandler;
+
+    public StockFeedProviderWSClient(WebSocketHandler webSocketHandler){
+        this.webSocketHandler = webSocketHandler;
+    }
+
+    public void connect() {
         try {
             WebSocketHttpHeaders headers = new WebSocketHttpHeaders();
             headers.add(apiKeyHeader, apiKey);
