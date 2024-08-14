@@ -12,7 +12,7 @@ public class StockFeedProviderWSClient {
 
     private final StandardWebSocketClient webSocketClient = new StandardWebSocketClient();
 
-    @Value("${stockprovider.wsapi.url}")
+    @Value("${stockprovider.ws.url}")
     private String wsUrl;
 
     @Value("${stockprovider.api.key}")
