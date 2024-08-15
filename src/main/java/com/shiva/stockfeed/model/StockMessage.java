@@ -2,6 +2,10 @@ package com.shiva.stockfeed.model;
 
 import java.util.List;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Getter;
@@ -9,7 +13,12 @@ import lombok.Setter;
 
 @Getter
 @Setter
+@Document
 public class StockMessage {
+
+    @Id
+    @JsonIgnore
+    private String _id;
 
     @JsonProperty("T")
     private String type;
