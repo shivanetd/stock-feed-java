@@ -16,7 +16,7 @@ public class StockFeedHandlerService extends TextWebSocketHandler {
     private ObjectMapper mapper;
 
     public StockFeedHandlerService(){
-        mapper = new 
+       // mapper = new 
     }
 
 
@@ -26,8 +26,6 @@ public class StockFeedHandlerService extends TextWebSocketHandler {
 
         // Process the received message
         System.out.println("Received message: " + payload);
-
-        mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
 
     }
 
