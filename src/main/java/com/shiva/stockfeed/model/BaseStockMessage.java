@@ -4,13 +4,14 @@ import org.springframework.data.annotation.Id;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.shiva.stockfeed.handler.FeedHandler;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class BaseStockMessage {
+public class BaseStockMessage implements FeedableMessage{
     
     @JsonProperty("T")
     private String type;
@@ -28,4 +29,11 @@ public class BaseStockMessage {
 
     @JsonProperty("msg")
     private String message;
+
+    @Override
+    public void feed(FeedHandler feedAgregator) {
+        
+    }
+
+
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.shiva.stockfeed.handler.FeedHandler;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -37,4 +38,9 @@ public class StockQuoteMessage extends BaseStockMessage {
 
     @JsonProperty("z")
     private String tape;
+
+    @Override
+    public void feed(FeedHandler feedHandler) {
+        feedHandler.genericFeed(this);
+    }
 }
