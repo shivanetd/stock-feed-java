@@ -4,7 +4,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.shiva.stockfeed.model.*;
 
-public interface StockFeedSnapshotRepository extends MongoRepository<StockMessage, String> {
+public interface StockTradeRepository extends MongoRepository<StockTradeMessage, String> {
 
     
     

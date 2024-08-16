@@ -3,7 +3,7 @@ package com.shiva.stockfeed.service;
 import java.util.List;
 
 import com.shiva.stockfeed.model.*;
-import com.shiva.stockfeed.repository.StockFeedSnapshotRepository;
+import com.shiva.stockfeed.repository.StockBarRepository;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.TextMessage;
@@ -19,11 +19,11 @@ public class StockFeedHandlerService extends TextWebSocketHandler {
     
     private ObjectMapper mapper;
 
-    private StockFeedSnapshotRepository repository;
+    private StockBarRepository barRepository;
 
-    public StockFeedHandlerService(ObjectMapper mapper, StockFeedSnapshotRepository repository){
+    public StockFeedHandlerService(ObjectMapper mapper, StockBarRepository repository){
         this.mapper = mapper;
-        this.repository = repository;
+        this.barRepository = repository;
     }
 
 
@@ -34,9 +34,15 @@ public class StockFeedHandlerService extends TextWebSocketHandler {
         // Process the received message
         System.out.println("Received message: " + payload);
 
-        List<StockMessage> messages = mapper.readValue(payload, new TypeReference<List<StockMessage>>(){});
+        List<BaseStockMessage> messages = mapper.readValue(payload, new TypeReference<List<BaseStockMessage>>(){});
 
-        repository.insert(messages);
+        //TODO:- Add a design pattern to handle all messages in better way 
+        for (BaseStockMessage baseStockMessage : messages) {
+            if(baseStockMessage.getType().equals("b")){
+                List<StockBarMessage> barMessages = mapper.readValue(payload, new TypeReference<List<StockBarMessage>>(){});
+                barRepository.insert(barMessages);
+            }
+        }
     }
 
 }

@@ -25,4 +25,7 @@ public class BaseStockMessage {
 
     @JsonProperty("t")
     private String timestamp;
+
+    @JsonProperty("msg")
+    private String message;
 }
