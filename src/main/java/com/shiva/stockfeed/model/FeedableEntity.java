@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.shiva.stockfeed.handler.FeedHandler;
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "T")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "T", visible = true)
 @JsonSubTypes({
     @JsonSubTypes.Type(value = StockBarMessage.class, name = "b"),
     @JsonSubTypes.Type(value = StockTradeMessage.class, name = "t"),
@@ -15,5 +15,5 @@ public interface FeedableEntity {
     String getType();
     
     void feed(FeedHandler feedAgregator);
-    
+
 }

@@ -42,7 +42,6 @@ public class WebSocketHandler extends TextWebSocketHandler {
             if(persistMessage(feedableEntity)){
                 feedableEntity.feed(feedHandler);
             }
-            
         }
 
     }
