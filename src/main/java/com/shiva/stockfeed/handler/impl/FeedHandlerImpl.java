@@ -1,7 +1,8 @@
-package com.shiva.stockfeed.handler;
+package com.shiva.stockfeed.handler.impl;
 
 import org.springframework.stereotype.Component;
 
+import com.shiva.stockfeed.handler.FeedHandler;
 import com.shiva.stockfeed.model.StockBarMessage;
 import com.shiva.stockfeed.model.StockQuoteMessage;
 import com.shiva.stockfeed.model.StockTradeMessage;

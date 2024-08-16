@@ -15,20 +15,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Document(collation = "Quotes")
-public class StockQuoteMessage implements FeedableEntity {
-
-    @Id
-    @JsonIgnore
-    private String _id;
-    
-    @JsonProperty("T")
-    private String type;
-
-    @JsonProperty("S")
-    private String symbol;
-
-    @JsonProperty("t")
-    private String timestamp;
+public class StockQuoteMessage extends BaseStockMessage {
 
     @JsonProperty("ax")
     private String askExchange;

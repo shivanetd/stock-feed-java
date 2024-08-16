@@ -13,20 +13,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Document(collation = "Bars")
-public class StockBarMessage implements FeedableEntity {
-    @Id
-    @JsonIgnore
-    private String _id;
+public class StockBarMessage extends BaseStockMessage {
     
-    @JsonProperty("T")
-    private String type;
-
-    @JsonProperty("S")
-    private String symbol;
-
-    @JsonProperty("t")
-    private String timestamp;
-
     @JsonProperty("o")
     private Double openPrice;
 

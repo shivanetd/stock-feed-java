@@ -14,7 +14,7 @@ import lombok.Setter;
 public class BaseStockMessage implements FeedableEntity{
     
     @JsonProperty("T")
-    private String type;
+    private MessageType type;
 
     @JsonProperty("S")
     private String symbol;
@@ -22,7 +22,6 @@ public class BaseStockMessage implements FeedableEntity{
     @Id
     @JsonIgnore
     private String _id;
-
 
     @JsonProperty("t")
     private String timestamp;

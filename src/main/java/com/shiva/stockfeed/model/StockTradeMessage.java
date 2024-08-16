@@ -15,20 +15,7 @@ import java.util.*;
 @Getter
 @Setter
 @Document(collation = "Trades")
-public class StockTradeMessage implements FeedableEntity {
-
-    @Id
-    @JsonIgnore
-    private String _id;
-
-    @JsonProperty("T")
-    private String type;
-
-    @JsonProperty("S")
-    private String symbol;
-
-    @JsonProperty("t")
-    private String timestamp;
+public class StockTradeMessage extends BaseStockMessage {
 
     @JsonProperty("i")
     private int tradeId;

@@ -1,5 +1,6 @@
 package com.shiva.stockfeed.handler;
 
+import java.util.Arrays;
 import java.util.List;
 
 import com.shiva.stockfeed.model.*;
@@ -48,9 +49,9 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
     private boolean persistMessage(FeedableEntity entity){
         return 
-            entity instanceof StockBarMessage ||
-            entity instanceof StockQuoteMessage ||
-            entity instanceof StockTradeMessage ;
+            Arrays.stream(MessageType.values())
+                .filter( type -> type.isFeedMessage())
+                .anyMatch( type -> type == entity.getType());
     }
 
 }

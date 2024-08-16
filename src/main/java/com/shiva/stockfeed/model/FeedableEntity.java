@@ -12,7 +12,7 @@ import com.shiva.stockfeed.handler.FeedHandler;
     @JsonSubTypes.Type(value = BaseStockMessage.class, name = "success")
 })
 public interface FeedableEntity {
-    String getType();
+    MessageType getType();
     
     void feed(FeedHandler feedAgregator);
 
