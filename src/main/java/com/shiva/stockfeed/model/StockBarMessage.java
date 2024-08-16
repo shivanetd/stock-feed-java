@@ -10,7 +10,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Document
+@Document(collation = "Bars")
 public class StockBarMessage extends BaseStockMessage {
 
     @JsonProperty("o")

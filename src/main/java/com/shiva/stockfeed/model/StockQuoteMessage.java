@@ -12,7 +12,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Document
+@Document(collation = "Quotes")
 public class StockQuoteMessage extends BaseStockMessage {
 
     @JsonProperty("ax")

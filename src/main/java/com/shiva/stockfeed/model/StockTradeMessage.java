@@ -12,7 +12,7 @@ import java.util.*;
 
 @Getter
 @Setter
-@Document
+@Document(collation = "Trades")
 public class StockTradeMessage extends BaseStockMessage {
 
     @JsonProperty("i")
