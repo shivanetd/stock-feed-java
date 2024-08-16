@@ -3,8 +3,8 @@ package com.shiva.stockfeed.handler;
 import java.util.List;
 
 import com.shiva.stockfeed.model.*;
-import com.shiva.stockfeed.repository.StockBarRepository;
 
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
@@ -28,7 +28,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
 
     @Override
-    public void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+    public void handleTextMessage(@NonNull WebSocketSession session,@NonNull TextMessage message) throws Exception {
         String payload = message.getPayload();
 
         // Process the received message
