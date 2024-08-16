@@ -1,8 +1,10 @@
 package com.shiva.stockfeed.client;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.client.standard.StandardWebSocketClient;
+
+import com.shiva.stockfeed.config.AppConfig;
+
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.WebSocketHttpHeaders;
 import java.net.URI;
@@ -12,33 +14,21 @@ public class StockFeedProviderWSClient {
 
     private final StandardWebSocketClient webSocketClient = new StandardWebSocketClient();
 
-    @Value("${stockprovider.ws.url}")
-    private String wsUrl;
-
-    @Value("${stockprovider.api.key}")
-    private String apiKey;
-
-    @Value("${stockprovider.api.keyName}")
-    private String apiKeyHeader;
-
-    @Value("${stockprovider.api.secret}")
-    private String apiSecret;
-
-    @Value("${stockprovider.api.secretName}")
-    private String apiSecretHeader;
-
     private final WebSocketHandler webSocketHandler;
 
-    public StockFeedProviderWSClient(WebSocketHandler webSocketHandler){
+    private final AppConfig appConfig;
+
+    public StockFeedProviderWSClient(WebSocketHandler webSocketHandler, AppConfig appConfig){
         this.webSocketHandler = webSocketHandler;
+        this.appConfig = appConfig;
     }
 
     public void connect() {
         try {
             WebSocketHttpHeaders headers = new WebSocketHttpHeaders();
-            headers.add(apiKeyHeader, apiKey);
-            headers.add(apiSecretHeader, apiKeyHeader);
-            webSocketClient.execute(webSocketHandler, headers ,URI.create(wsUrl));
+            headers.add(appConfig.getKeyName(), appConfig.getKey());
+            headers.add(appConfig.getSecretName(), appConfig.getSecret());
+            webSocketClient.execute(webSocketHandler, headers ,URI.create(appConfig.getWsUrl()));
         } catch (Exception e) {
             e.printStackTrace();
         }
