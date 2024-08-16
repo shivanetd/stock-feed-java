@@ -1,4 +1,4 @@
-package com.shiva.stockfeed.service;
+package com.shiva.stockfeed.handler;
 
 import java.util.List;
 
@@ -14,16 +14,19 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Component
-public class StockFeedHandlerService extends TextWebSocketHandler {
+public class WebSocketHandler extends TextWebSocketHandler {
 
     
     private ObjectMapper mapper;
 
     private StockBarRepository barRepository;
 
-    public StockFeedHandlerService(ObjectMapper mapper, StockBarRepository repository){
+    private FeedHandler feedHandler;
+
+    public WebSocketHandler(ObjectMapper mapper, StockBarRepository repository, FeedHandler feedHandler){
         this.mapper = mapper;
         this.barRepository = repository;
+        this.feedHandler = feedHandler;
     }
 
 
@@ -34,15 +37,16 @@ public class StockFeedHandlerService extends TextWebSocketHandler {
         // Process the received message
         System.out.println("Received message: " + payload);
 
-        List<BaseStockMessage> messages = mapper.readValue(payload, new TypeReference<List<BaseStockMessage>>(){});
+       
+        List<FeedableEntity> feedMessage = mapper.readValue(payload, new TypeReference<List<FeedableEntity>>(){});
+        
 
-        //TODO:- Add a design pattern to handle all messages in better way 
-        for (BaseStockMessage baseStockMessage : messages) {
-            if(baseStockMessage.getType().equals("b")){
-                List<StockBarMessage> barMessages = mapper.readValue(payload, new TypeReference<List<StockBarMessage>>(){});
-                barRepository.insert(barMessages);
+        for (FeedableEntity feedableEntity : feedMessage) {
+            if(feedableEntity.isFeedable()){
+                feedableEntity.feed(feedHandler);
             }
         }
+
     }
 
 }

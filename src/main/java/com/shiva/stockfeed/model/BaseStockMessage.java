@@ -11,7 +11,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class BaseStockMessage implements FeedableMessage{
+public class BaseStockMessage implements FeedableEntity{
     
     @JsonProperty("T")
     private String type;
