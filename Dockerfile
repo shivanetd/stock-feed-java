@@ -1,4 +1,4 @@
-FROM gradle:8.3 AS build
+FROM gradle:8.8 AS build
 
 COPY src/main ./src/main
 COPY build.gradle settings.gradle  ./
