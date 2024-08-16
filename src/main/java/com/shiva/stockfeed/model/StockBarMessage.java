@@ -1,5 +1,6 @@
 package com.shiva.stockfeed.model;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -12,9 +13,23 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Document(collation = "Bars")
-public class StockBarMessage extends BaseStockMessage {
+@Document(collection = "Bars")
+public class StockBarMessage implements FeedableEntity {
     
+
+    @Id
+    @JsonIgnore
+    private ObjectId _id;
+
+    @JsonProperty("T")
+    private MessageType type;
+
+    @JsonProperty("S")
+    private String symbol;
+
+    @JsonProperty("t")
+    private String timestamp;
+
     @JsonProperty("o")
     private Double openPrice;
 

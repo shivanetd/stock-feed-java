@@ -9,11 +9,15 @@ import com.shiva.stockfeed.handler.FeedHandler;
     @JsonSubTypes.Type(value = StockBarMessage.class, name = "b"),
     @JsonSubTypes.Type(value = StockTradeMessage.class, name = "t"),
     @JsonSubTypes.Type(value = StockQuoteMessage.class, name = "q"),
-    @JsonSubTypes.Type(value = BaseStockMessage.class, name = "success")
+    @JsonSubTypes.Type(value = BaseStockMessage.class, name = "success"),
+    @JsonSubTypes.Type(value = StockSubscriptionMessage.class, name = "subscription")
 })
 public interface FeedableEntity {
+
     MessageType getType();
     
-    void feed(FeedHandler feedAgregator);
+    default void feed(FeedHandler feedAgregator){
 
+    }
+    
 }

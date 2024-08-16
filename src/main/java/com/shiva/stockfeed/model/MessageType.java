@@ -16,9 +16,9 @@ public enum MessageType {
     Subscription("subscription", false),
     Unknow("", false);
 
-    MessageType(String code, boolean feedMessage){
+    MessageType(String code, boolean subscribed){
         this.code = code;
-        this.feedMessage = feedMessage;
+        this.isSubscribed = subscribed;
     }
 
     @JsonValue
@@ -26,7 +26,7 @@ public enum MessageType {
     private final String code;
 
     @Getter
-    private final boolean feedMessage;
+    private final boolean isSubscribed;
 
     @JsonCreator
     public static MessageType fromCode(String code){
