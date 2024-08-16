@@ -19,13 +19,10 @@ public class WebSocketHandler extends TextWebSocketHandler {
     
     private ObjectMapper mapper;
 
-    private StockBarRepository barRepository;
-
     private FeedHandler feedHandler;
 
-    public WebSocketHandler(ObjectMapper mapper, StockBarRepository repository, FeedHandler feedHandler){
+    public WebSocketHandler(ObjectMapper mapper, FeedHandler feedHandler){
         this.mapper = mapper;
-        this.barRepository = repository;
         this.feedHandler = feedHandler;
     }
 
