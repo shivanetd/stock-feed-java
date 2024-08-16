@@ -1,7 +1,9 @@
 package com.shiva.stockfeed.model;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.shiva.stockfeed.handler.FeedHandler;
 
@@ -13,7 +15,20 @@ import java.util.*;
 @Getter
 @Setter
 @Document(collation = "Trades")
-public class StockTradeMessage extends BaseStockMessage {
+public class StockTradeMessage implements FeedableEntity {
+
+    @Id
+    @JsonIgnore
+    private String _id;
+
+    @JsonProperty("T")
+    private String type;
+
+    @JsonProperty("S")
+    private String symbol;
+
+    @JsonProperty("t")
+    private String timestamp;
 
     @JsonProperty("i")
     private int tradeId;

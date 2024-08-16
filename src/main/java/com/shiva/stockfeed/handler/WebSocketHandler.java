@@ -39,11 +39,18 @@ public class WebSocketHandler extends TextWebSocketHandler {
         
 
         for (FeedableEntity feedableEntity : feedMessage) {
-            if(feedableEntity.isFeedable()){
+            if(persistMessage(feedableEntity){
                 feedableEntity.feed(feedHandler);
             }
         }
 
+    }
+
+    private boolean persistMessage(FeedableEntity entity){
+        return 
+            entity instanceof StockBarMessage ||
+            entity instanceof StockQuoteMessage ||
+            entity instanceof StockTradeMessage ;
     }
 
 }
