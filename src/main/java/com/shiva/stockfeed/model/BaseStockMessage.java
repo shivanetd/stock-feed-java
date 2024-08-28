@@ -1,7 +1,6 @@
 package com.shiva.stockfeed.model;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.web.socket.WebSocketSession;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
