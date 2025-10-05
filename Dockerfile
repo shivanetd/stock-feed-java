@@ -1,15 +1,21 @@
 FROM gradle:8.8 AS build
+WORKDIR /app
 
-COPY src/main ./src/main
-COPY build.gradle settings.gradle  ./
+# Copy gradle files first for better caching
+COPY gradle gradle
+COPY gradlew build.gradle settings.gradle ./
 
-RUN gradle clean build
+# Copy source code
+COPY src src
+
+# Build the application
+RUN ./gradlew clean build --no-daemon
 
 FROM openjdk:21-jdk-slim AS run
 
 RUN adduser --system --group app-user
 
-COPY --from=build --chown=app-user:app-user /home/gradle/build/libs/stock-feed-*.jar app.jar
+COPY --from=build --chown=app-user:app-user /app/build/libs/stock-feed-*.jar app.jar
 
 EXPOSE 8080
 USER app-user
