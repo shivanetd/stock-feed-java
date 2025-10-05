@@ -12,7 +12,7 @@ public class HealthCheckController {
     }
 
     @GetMapping("/live")
-    public String healthCheck(){
+    public String healthLive(){
         return "live";
     }
 }

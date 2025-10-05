@@ -35,4 +35,6 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+	// Skip tests if environment variable SKIP_TESTS is set
+	onlyIf { !System.getenv('SKIP_TESTS') }
 }
