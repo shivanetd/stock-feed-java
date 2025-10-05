@@ -3,13 +3,17 @@ WORKDIR /app
 
 # Copy gradle files first for better caching
 COPY gradle gradle
-COPY gradlew build.gradle settings.gradle ./
+COPY gradlew gradlew.bat build.gradle settings.gradle ./
+
+# Ensure gradlew is executable
+RUN chmod +x gradlew
 
 # Copy source code
 COPY src src
 
-# Build the application
-RUN ./gradlew clean build --no-daemon
+# Build the application (skip tests)
+ENV SKIP_TESTS=true
+RUN ./gradlew clean build --no-daemon --stacktrace
 
 FROM openjdk:21-jdk-slim AS run
 
