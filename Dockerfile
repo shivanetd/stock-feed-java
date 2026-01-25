@@ -15,7 +15,7 @@ COPY src src
 ENV SKIP_TESTS=true
 RUN ./gradlew clean build --no-daemon --stacktrace
 
-FROM openjdk:21-jdk-slim AS run
+FROM openjdk:21-ea-21-jdk-slim AS run
 
 RUN adduser --system --group app-user
 
