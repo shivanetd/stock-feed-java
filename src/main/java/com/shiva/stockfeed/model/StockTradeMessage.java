@@ -32,7 +32,7 @@ public class StockTradeMessage implements FeedableEntity {
     private String timestamp;
 
     @JsonProperty("i")
-    private int tradeId;
+    private long tradeId;
 
     @JsonProperty("x")
     private String exchange;
@@ -41,7 +41,7 @@ public class StockTradeMessage implements FeedableEntity {
     private Double price;
 
     @JsonProperty("s")
-    private int tradeSize;
+    private long tradeSize;
 
     @JsonProperty("c")
     private List<String> tradeConditions;

@@ -27,14 +27,16 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
-	implementation 'io.opentelemetry.instrumentation:opentelemetry-spring-boot-starter'
-	implementation 'io.opentelemetry:opentelemetry-exporter-otlp'
-	implementation platform('io.opentelemetry:opentelemetry-bom:1.30.0')
-	implementation 'io.micrometer:micrometer-registry-otlp'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	
+	implementation 'io.micrometer:micrometer-tracing-bridge-otel'
+    implementation 'io.opentelemetry:opentelemetry-exporter-otlp'
+
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	testImplementation 'org.springframework.boot:spring-boot-starter-opentelemetry-test'
 }
 
 tasks.named('test') {
