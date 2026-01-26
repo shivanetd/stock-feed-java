@@ -13,7 +13,7 @@ COPY src src
 
 # Build the application (skip tests)
 ENV SKIP_TESTS=true
-RUN ./gradlew clean build --no-daemon --stacktrace
+RUN ./gradlew clean build --no-daemon --stacktrace -x test
 
 FROM openjdk:21-ea-21-jdk-slim AS run
 
