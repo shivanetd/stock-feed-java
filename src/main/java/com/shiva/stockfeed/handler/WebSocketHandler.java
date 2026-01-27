@@ -13,21 +13,20 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.type.TypeReference;
+import tools.jackson.databind.json.JsonMapper;
 
 @Component
 public class WebSocketHandler extends TextWebSocketHandler {
 
-    
-    private final ObjectMapper mapper;
+    private final JsonMapper mapper;
 
     private final FeedHandler feedHandler;
 
     private final AppConfig appConfig;
 
-    public WebSocketHandler(ObjectMapper mapper, FeedHandler feedHandler, AppConfig appConfig){
+    public WebSocketHandler(JsonMapper mapper, FeedHandler feedHandler, AppConfig appConfig){
         this.mapper = mapper;
         this.feedHandler = feedHandler;
         this.appConfig = appConfig;
@@ -62,7 +61,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
                 .anyMatch( type -> type == entity.getType());
     }
 
-    private TextMessage subscriptionRequest() throws JsonProcessingException{
+    private TextMessage subscriptionRequest() throws JacksonException{
         
         SubscriptionRequest request = new SubscriptionRequest();
 
